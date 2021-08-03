@@ -18,15 +18,15 @@ func NewPriorityQueue(less Less) *HeapPriorityQueue {
 	return pq
 }
 func (pq *HeapPriorityQueue) Push(element interface{}) {
-	pq.size = pq.size + 1
+	pq.size++
 	pq.data = append(pq.data, element)
 	pq.heapifyUp(pq.size)
 }
 func (pq *HeapPriorityQueue) Pop() interface{} {
 	head := pq.data[1]
 	pq.swap(1, pq.size)
-	pq.size = pq.size - 1
-	pq.data[pq.size+1] = nil
+	pq.size--
+	pq.data = pq.data[:pq.size+1]
 	pq.heapifyDown(1)
 	return head
 }
@@ -35,6 +35,9 @@ func (pq *HeapPriorityQueue) Peek() interface{} {
 }
 func (pq *HeapPriorityQueue) IsEmpty() bool {
 	return pq.size == 0
+}
+func (pq *HeapPriorityQueue) Size() int {
+	return pq.size
 }
 
 func (pq *HeapPriorityQueue) swap(i1 int, i2 int) {
