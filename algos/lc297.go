@@ -19,7 +19,7 @@ type Codec struct {
 	sb strings.Builder
 }
 
-func Constructor() Codec {
+func ConstructorCodec() Codec {
 	return Codec{}
 }
 
